@@ -1,0 +1,2 @@
+.container{width:700px;margin-left:auto;margin-right:auto;padding-left:10px;padding-right:10px}.error{color:red;font-size:30px}.loader{width:48px;height:48px;box-sizing:border-box;border:5px solid #000;border-bottom-color:rgba(0,0,0,0);border-radius:50%;animation:rotation 1s linear infinite;display:inline-block;position:absolute;top:35%;left:50%}@keyframes rotation{0%{transform:rotate(0deg)}to{transform:rotate(360deg)}}.el_disp_none{display:none}.visible{display:block}
+/*# sourceMappingURL=index.95c41974.css.map */
