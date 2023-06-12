@@ -17,10 +17,14 @@ refs.breedSelect.addEventListener('change', e => {
   const optionValue = e.target.options[e.target.selectedIndex].value;
   fetchCatByBreed(optionValue)
     .then(data => {
-      if (!data.name || !data.temperament || !data.description) {
-        throw data;
-      }
-      return data;
+      const selectCat = {
+        name: data.name,
+        temperament: data.temperament,
+        description: data.description,
+        imgAlt: data.alt_names,
+        img: data.reference_image_id,
+      };
+      return selectCat;
     })
     .then(({ name, temperament, description, imgAlt, img }) => {
       const cat = `<div class = "container"><h2>${name || 'cat name'}</h2>
@@ -34,7 +38,6 @@ refs.breedSelect.addEventListener('change', e => {
       refs.catInfo.innerHTML = cat;
     })
     .catch(error => {
-      console.error('Якогось із параметрів не хватає:', error);
       alert(
         'Упс, схоже виникла помилка, спробуйте перезавантажити сторінку, якщо це не допоможе то спробуйте обрати іншого котика'
       );
@@ -54,24 +57,28 @@ refs.loader.classList.add('visible');
 
 fetchBreeds()
   .then(data => {
+    // filter to only include those with an `image` object
+    storedBreeds = data.map(e => {
+      const nameId = { name: e.name, id: e.id };
+      return nameId;
+    });
+    return storedBreeds;
+  })
+  .then(data => {
     const option = showSelect(data);
+    refs.breedSelect.classList.remove('el_disp_none');
     refs.breedSelect.insertAdjacentHTML('beforeend', option.join(''));
   })
   .catch(error => {
-    refs.loader.classList.remove('el_disp_none');
-
-    refs.loader.classList.add('visible');
-
     alert(
       'Упс, схоже сайт не працює або у вас проблеми з інтернетом, спробуйте перезавантажити сторінку'
     );
-    // console.error('er', error);
+    refs.loader.classList.remove('visible');
   })
   .finally(() => {
     // Hide the loader
     refs.loader.classList.remove('visible');
     // Show the breed select
-    refs.breedSelect.classList.remove('el_disp_none');
   });
 
 function showSelect(massName) {

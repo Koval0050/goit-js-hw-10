@@ -5,6 +5,12 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.error{
+  color: red;
+  font-size: 30px;
+}
+
 .loader {
   position: absolute;
   top: 35%;
