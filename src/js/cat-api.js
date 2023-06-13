@@ -1,11 +1,9 @@
-let BASE_URL = `https://api.thecatapi.com/v1/breeds`;
-const OPTIONS = {
-  'x-api-key':
-    ' live_AqVAdbSI3iq6qvheU2btDbPvPUx4FhPf0KO84Ew4BtwLMszLCefwpjCjD6X1ksjH',
-};
+const BASE_URL = `https://api.thecatapi.com/v1`;
+const API_KEY =
+  ' live_AqVAdbSI3iq6qvheU2btDbPvPUx4FhPf0KO84Ew4BtwLMszLCefwpjCjD6X1ksjH';
 
 export const fetchBreeds = () => {
-  return fetch(BASE_URL, OPTIONS).then(response => {
+  return fetch(`${BASE_URL}/breeds?api_key=${API_KEY}`).then(response => {
     if (!response.ok) {
       throw new Error(console.error('Internet problems?'));
     }
@@ -14,9 +12,10 @@ export const fetchBreeds = () => {
 };
 
 export const fetchCatByBreed = breedId => {
-  const BASE_URL = `https://api.thecatapi.com/v1/breeds/${breedId}`;
 
-  return fetch(BASE_URL, OPTIONS).then(response => {
+  return fetch(
+    `${BASE_URL}/images/search?breed_ids=${breedId}&api_key=${API_KEY}`
+  ).then(response => {
     if (!response.ok) {
       throw new Error(console.error('Try reloading the page!'));
     }

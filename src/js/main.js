@@ -17,19 +17,22 @@ refs.breedSelect.addEventListener('change', e => {
   const optionValue = e.target.options[e.target.selectedIndex].value;
   fetchCatByBreed(optionValue)
     .then(data => {
+      const catImg = data[0].url;
+      const dataCat = data[0].breeds[0];
       const selectCat = {
-        name: data.name,
-        temperament: data.temperament,
-        description: data.description,
-        imgAlt: data.alt_names,
-        img: data.reference_image_id,
+        name: dataCat.name,
+        temperament: dataCat.temperament,
+        description: dataCat.description,
+        imgAlt: dataCat.alt_names,
+        img: catImg,
       };
       return selectCat;
     })
     .then(({ name, temperament, description, imgAlt, img }) => {
+      console.log(img);
       const cat = `<div class = "container"><h2>${name || 'cat name'}</h2>
     <p><b>Temperament: </b>${temperament}</p>
-    <img src="https://cdn2.thecatapi.com/images/${img}.jpg" width="500" alt="${
+    <img src="${img}" width="500" alt="${
         imgAlt || 'cat'
       }">
     <p>${description || 'description'}</p></div>`;
