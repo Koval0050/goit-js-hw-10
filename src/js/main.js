@@ -63,12 +63,15 @@ fetchBreeds()
     // filter to only include those with an `image` object
     storedBreeds = data.map(e => {
       const nameId = { name: e.name, id: e.id };
+      // console.log(nameId);
       return nameId;
     });
+    // console.log(storedBreeds);
     return storedBreeds;
   })
   .then(data => {
     const option = showSelect(data);
+    // console.log(option);
     refs.breedSelect.classList.remove('el_disp_none');
     refs.breedSelect.insertAdjacentHTML('beforeend', option.join(''));
   })
