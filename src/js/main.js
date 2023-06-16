@@ -1,5 +1,5 @@
+import Notiflix from 'notiflix';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
-
 const refs = {
   breedSelect: document.querySelector('.breed-select'),
   loader: document.querySelector('.loader'),
@@ -32,9 +32,7 @@ refs.breedSelect.addEventListener('change', e => {
       console.log(img);
       const cat = `<div class = "container"><h2>${name || 'cat name'}</h2>
     <p><b>Temperament: </b>${temperament}</p>
-    <img src="${img}" width="500" alt="${
-        imgAlt || 'cat'
-      }">
+    <img src="${img}" width="500" alt="${imgAlt || 'cat'}">
     <p>${description || 'description'}</p></div>`;
       refs.catInfo.classList.remove('el_disp_none');
 
@@ -76,9 +74,11 @@ fetchBreeds()
     refs.breedSelect.insertAdjacentHTML('beforeend', option.join(''));
   })
   .catch(error => {
-    alert(
+    console.log(error);
+    Notiflix.Notify.failure(
       'Упс, схоже сайт не працює або у вас проблеми з інтернетом, спробуйте перезавантажити сторінку'
     );
+
     refs.loader.classList.remove('visible');
   })
   .finally(() => {

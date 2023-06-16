@@ -7,7 +7,7 @@ export const fetchBreeds = () => {
     if (!response.ok) {
       throw new Error();
     }
-    return response.json();
+    return response.json(response);
   });
 };
 
@@ -16,7 +16,7 @@ export const fetchCatByBreed = breedId => {
     `${BASE_URL}/images/search?breed_ids=${breedId}&api_key=${API_KEY}`
   ).then(response => {
     if (!response.ok) {
-      throw new Error();
+      throw new Error(response);
     }
     return response.json();
   });
