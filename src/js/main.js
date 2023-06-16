@@ -59,7 +59,7 @@ refs.loader.classList.add('visible');
 fetchBreeds()
   .then(data => {
     // filter to only include those with an `image` object
-    storedBreeds = data.map(e => {
+   const storedBreeds = data.map(e => {
       const nameId = { name: e.name, id: e.id };
       // console.log(nameId);
       return nameId;
