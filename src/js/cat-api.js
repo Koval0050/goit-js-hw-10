@@ -5,7 +5,7 @@ const API_KEY =
 export const fetchBreeds = () => {
   return fetch(`${BASE_URL}/breeds?api_key=${API_KEY}`).then(response => {
     if (!response.ok) {
-      throw new Error();
+      throw new Error(response);
     }
     return response.json(response);
   });

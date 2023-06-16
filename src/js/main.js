@@ -39,9 +39,11 @@ refs.breedSelect.addEventListener('change', e => {
       refs.catInfo.innerHTML = cat;
     })
     .catch(error => {
-      alert(
-        'Упс, схоже виникла помилка, спробуйте перезавантажити сторінку, якщо це не допоможе то спробуйте обрати іншого котика'
+      console.log(error);
+      Notiflix.Notify.failure(
+        'Упс, схоже виникла помилка, спробуйте перезавантажити сторінку'
       );
+     
       refs.catInfo.classList.add('el_disp_none');
 
       // Show the error message
